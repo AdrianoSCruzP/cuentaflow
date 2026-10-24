@@ -1,0 +1,12 @@
+# Opcional: levanta MongoDB local con Docker ->  docker compose up -d
+services:
+  mongodb:
+    image: mongo:7
+    container_name: cuentaflow-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - cuentaflow-data:/data/db
+
+volumes:
+  cuentaflow-data:

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cuentaflow
+  # Spring Boot 4: las propiedades de MongoDB ahora usan el prefijo spring.mongodb (antes spring.data.mongodb)
+  mongodb:
+    # Local o Docker: mongodb://localhost:27017
+    # MongoDB Atlas: define la variable de entorno MONGODB_URI con tu cadena mongodb+srv://...
+    uri: ${MONGODB_URI:mongodb://localhost:27017}
+    database: cuentaflowdb
+
+server:
+  port: 8085

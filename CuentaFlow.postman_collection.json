@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "CuentaFlow - Taller RxJava + WebFlux + MongoDB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Listar cuentas (3)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Cuentas del cliente 45678912 (2)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/clientes/45678912/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "clientes",
+            "45678912",
+            "cuentas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Cuentas de cliente sin cuentas ([])",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/clientes/11111111/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "clientes",
+            "11111111",
+            "cuentas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Consultar cuenta (200)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas/191-45678912-01",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas",
+            "191-45678912-01"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Consultar cuenta inexistente (404)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas",
+            "999"
+          ]
+        }
+      }
+    },
+    {
+      "name": "6. Registrar AHORRO PEN (201)",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas"
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dni\": \"11111111\",\n  \"titular\": \"Ana Torres\",\n  \"tipo\": \"AHORRO\",\n  \"moneda\": \"PEN\",\n  \"saldoInicial\": 100.0\n}"
+        }
+      }
+    },
+    {
+      "name": "7. Registrar duplicada (409)",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas"
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dni\": \"11111111\",\n  \"titular\": \"Ana Torres\",\n  \"tipo\": \"AHORRO\",\n  \"moneda\": \"PEN\",\n  \"saldoInicial\": 100.0\n}"
+        }
+      }
+    },
+    {
+      "name": "8. CORRIENTE con saldo 200 (400 SALDO_MINIMO)",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas"
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dni\": \"11111111\",\n  \"titular\": \"Ana Torres\",\n  \"tipo\": \"CORRIENTE\",\n  \"moneda\": \"PEN\",\n  \"saldoInicial\": 200.0\n}"
+        }
+      }
+    },
+    {
+      "name": "9. DNI inválido (400 VALIDACION)",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cuentas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "cuentas"
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dni\": \"123\",\n  \"titular\": \"Ana Torres\",\n  \"tipo\": \"AHORRO\",\n  \"moneda\": \"PEN\",\n  \"saldoInicial\": 100.0\n}"
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8085"
+    }
+  ]
+}
